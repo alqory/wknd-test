@@ -3,7 +3,7 @@ import curve from './assets/curve.svg'
 
 export const Deffinition = () => {
     return(
-        <section className="bg-main -z-20 relative overflow-hidden py-48 " aria-label="definition">
+        <section className="bg-main -z-20 relative overflow-hidden pt-48 pb-12 md:pb-48 " aria-label="definition">
             <div className='absolute right-0 top-8 md:top-28' aria-label="definition-icon">
                 <img src={robot} className="" alt="robot-icon" />
                 <img className='absolute -z-10 -right-2 -top-10' src={curve} alt="curve" />
