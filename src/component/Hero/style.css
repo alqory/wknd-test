@@ -1,0 +1,9 @@
+[aria-label="hero"] {
+    background:url("./assets/blue-curve.svg") no-repeat 100% -13% ,url("./assets/black-wave.svg") center, #EEBECE;
+}
+
+@media (min-width: 768px) {
+    [aria-label="hero"] {
+        background:url("./assets/blue-curve.svg") no-repeat 21% -14% ,url("./assets/black-wave.svg") top center, #EEBECE;
+    }
+}
