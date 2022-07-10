@@ -1,9 +1,24 @@
 [aria-label="hero"] {
-    background:url("./assets/blue-curve.svg") no-repeat 100% -13% ,url("./assets/black-wave.svg") center, #EEBECE;
+    background: url("./assets/black-wave.svg") no-repeat center , #EEBECE;
+    
 }
 
-@media (min-width: 768px) {
-    [aria-label="hero"] {
-        background:url("./assets/blue-curve.svg") no-repeat 21% -14% ,url("./assets/black-wave.svg") top center, #EEBECE;
-    }
+[aria-label="hero-wrapper"] {
+    background: url("./assets/oval.svg") no-repeat -65px 210px ,url("./assets/pink-curve.svg") no-repeat 930px 230px ,url("./assets/blue-curve.svg") no-repeat -380px -53px;
 }
+
+@media (min-width: 1024px) {
+    [aria-label="hero"] {
+        background: url("./assets/black-wave.svg") no-repeat 10% -70px , #EEBECE;
+        background-size: cover;
+    }
+
+    [aria-label="hero-wrapper"] {
+        background: url("./assets/oval.svg") no-repeat 420px 190px ,url("./assets/pink-curve.svg") no-repeat 930px 230px ,url("./assets/blue-curve.svg") no-repeat 115px -73px;
+    }
+    
+}
+
+/* */
+
+/* url("./assets/blue-curve.svg") no-repeat 100% -13% , */

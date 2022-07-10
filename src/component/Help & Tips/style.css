@@ -1,0 +1,9 @@
+[aria-label='container-content'] {
+    background:  #000000;
+}
+
+@media (min-width: 768px) {
+    [aria-label='container-content'] {
+        background: url("./assets/curve.svg") no-repeat 90% top , #000000;
+    }
+}

@@ -9,6 +9,7 @@ export const Testimonial  = () => {
     const [drag, setDrag] = useState(false)
     const dragRef = useRef(null)
 
+
     const getTestimonialAPI =  async () => {
         try {
             const response = await( await fetch("https://wknd-take-home-challenge-api.herokuapp.com/testimonial") ).json()
@@ -21,12 +22,11 @@ export const Testimonial  = () => {
     useEffect(()=> {
         getTestimonialAPI()
 
-        if(window.innerWidth >= 768) {
+        if(window.innerWidth >= 1024) {
             setDrag(false)
         }else {
             setDrag(true)
         }
-        console.log(window.innerWidth)
     },[])
 
     const slideRight = () => {
@@ -38,17 +38,21 @@ export const Testimonial  = () => {
     }
 
     return(
-        <section className="relative overflow-hidden font-workSans " aria-label="testimonial">
-            <div className='absolute pt-3 left-14 md:left-[300px] -top-2 md:-top-0  h-[89px] w-[89px] rounded-full bg-blue' aria-label='rounded-blue'></div>
-            <div className="bg-main py-16 text-left  md:text-center">
-                <h1 className="text-3xl translate-x-9 font-extrabold text-white">Testimonial</h1>
+        <section className="font-workSans relative overflow-hidden" aria-label="testimonial">
+            <div className='absolute left-14 lg:left-[19rem] top-2 h-[89px] w-[89px] rounded-full bg-blue' aria-label='rounded-blue'></div>
+            <div className="bg-main py-20 text-left md:text-center">
+                <h1 className="text-3xl translate-x-9 lg:translate-x-2 font-extrabold text-white">Testimonial</h1>
             </div>
-            <div className="bg-black flex justify-center items-center" aria-label="testimonial-slider">
-                <button disabled={ xPos === 0 || false } onClick={()=> slideLeft()} className="-translate-y-9 -translate-x-12 bg-gray-600 hover:bg-white p-3 rounded-full">
+            <div className="bg-black flex justify-center  items-center gap-x-5" aria-label="testimonial-slider">
+                <button 
+                    disabled={ xPos === 0 || false }
+                    onClick={()=> slideLeft()}
+                    className="-translate-y-9 hidden lg:block bg-gray-600 hover:bg-white p-3 rounded-full"
+                   >
                     <img className='opacity-70' src={left} alt="left-arrow"/>
                 </button>
-                <div  className='-translate-y-10 translate-x-2 md:translate-x-9 w-[550px] overflow-hidden cursor-grab' aria-label='slider-content-container'>
-                    <motion.div drag={ drag ? "x" : false } ref={dragRef} dragConstraints={{ right:0, left:-730 }}  animate={{ x : xPos, transitionDelay : 500 }} className="flex gap-3 " aria-label="slider-content-wrapper">
+                <div className='-translate-y-10 translate-x-10 lg:translate-x-4 w-[550px] overflow-hidden cursor-grab' aria-label='slider-content-container'>
+                    <motion.div drag={ drag ? "x" : false } ref={dragRef} dragConstraints={{ right:0, left: window.innerWidth > 1029 ? -730 : -930 }}  animate={{ x : xPos }} className="flex gap-3 " aria-label="slider-content-wrapper">
                         {
                             testimonial.map((testi, i) => (
                                 <div key={i} className="bg-white w-min px-4 py-3" aria-label='slider-content'>
@@ -59,7 +63,10 @@ export const Testimonial  = () => {
                         }
                     </motion.div>
                 </div>
-                <button disabled={ xPos === -750 || false } onClick={()=> slideRight()} className="-translate-y-9 translate-x-16 bg-gray-600 hover:bg-white p-3 rounded-full">
+                <button 
+                disabled={ xPos === -750 || false } 
+                onClick={()=> slideRight()} 
+                className="-translate-y-9 translate-x-0 hidden lg:block lg:translate-x-12 bg-gray-600 hover:bg-white p-3 rounded-full">
                     <img className='opacity-70' src={right} alt="left-arrow"/>
                 </button>
             </div>
