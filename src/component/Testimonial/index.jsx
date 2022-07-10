@@ -58,7 +58,8 @@ export const Testimonial  = () => {
          ref={ref}
          animate={animation}
          className="font-workSans relative overflow-hidden" 
-         aria-label="testimonial">
+         aria-label="testimonial"
+         >
             <div className='absolute left-14 lg:left-[19rem] top-2 h-[89px] w-[89px] rounded-full bg-blue' aria-label='rounded-blue'></div>
             <div className="bg-main py-20 text-left md:text-center">
                 <h1 className="text-3xl translate-x-9 lg:translate-x-2 font-extrabold text-white">Testimonial</h1>
@@ -71,7 +72,7 @@ export const Testimonial  = () => {
                    >
                     <img className='opacity-70' src={left} alt="left-arrow"/>
                 </button>
-                <div className='-translate-y-10 translate-x-10 lg:translate-x-4 w-[550px] overflow-hidden cursor-grab' aria-label='slider-content-container'>
+                <div className='-translate-y-10 translate-x-9 lg:translate-x-4 w-[550px] overflow-hidden cursor-grab' aria-label='slider-content-container'>
                     <motion.div 
                         drag={ drag ? "x" : false }
                         dragConstraints={{ right:0, left: window.innerWidth > 1029 ? -730 : -930 }}
