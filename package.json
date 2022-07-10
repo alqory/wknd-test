@@ -10,7 +10,8 @@
   "dependencies": {
     "framer-motion": "^6.4.3",
     "react": "^18.0.0",
-    "react-dom": "^18.0.0"
+    "react-dom": "^18.0.0",
+    "react-intersection-observer": "^9.3.5"
   },
   "devDependencies": {
     "@types/react": "^18.0.0",

@@ -13,11 +13,11 @@ export default function App(){
       <Header />
       <Hero />
       <Deffinition />
-      <Testimonial />
+       <Testimonial />
       <Information />
       <HelpAndTips />
       <Closing />
-      <Footer />
+      <Footer /> 
     </>
   )
 }

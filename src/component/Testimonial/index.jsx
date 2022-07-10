@@ -1,13 +1,18 @@
 import left from './assets/left-arrow.svg'
 import right from './assets/right-arrow.svg'
-import { motion } from 'framer-motion'
-import { useState, useEffect, useRef } from 'react'
+import { motion, useAnimation } from 'framer-motion'
+import { useInView } from 'react-intersection-observer'
+import { useState, useEffect } from 'react'
 
 export const Testimonial  = () => {
     const [xPos, setX] = useState(0)
     const [testimonial, setTestimonial] = useState([])
     const [drag, setDrag] = useState(false)
-    const dragRef = useRef(null)
+    const [ref, inView] = useInView({
+        threshold : 1,
+        triggerOnce : true
+    })
+    const animation = useAnimation()
 
 
     const getTestimonialAPI =  async () => {
@@ -27,7 +32,18 @@ export const Testimonial  = () => {
         }else {
             setDrag(true)
         }
-    },[])
+
+        animation.start({
+            y : 0,
+            opacity : 1,
+            transition : {
+                duration : 0.4
+            }
+        })
+
+        if(!inView) animation.start({ y : -100, opacity : 0 })
+
+    },[inView])
 
     const slideRight = () => {
         setX(prev => prev  - 250)
@@ -38,7 +54,11 @@ export const Testimonial  = () => {
     }
 
     return(
-        <section className="font-workSans relative overflow-hidden" aria-label="testimonial">
+        <motion.section 
+         ref={ref}
+         animate={animation}
+         className="font-workSans relative overflow-hidden" 
+         aria-label="testimonial">
             <div className='absolute left-14 lg:left-[19rem] top-2 h-[89px] w-[89px] rounded-full bg-blue' aria-label='rounded-blue'></div>
             <div className="bg-main py-20 text-left md:text-center">
                 <h1 className="text-3xl translate-x-9 lg:translate-x-2 font-extrabold text-white">Testimonial</h1>
@@ -52,7 +72,16 @@ export const Testimonial  = () => {
                     <img className='opacity-70' src={left} alt="left-arrow"/>
                 </button>
                 <div className='-translate-y-10 translate-x-10 lg:translate-x-4 w-[550px] overflow-hidden cursor-grab' aria-label='slider-content-container'>
-                    <motion.div drag={ drag ? "x" : false } ref={dragRef} dragConstraints={{ right:0, left: window.innerWidth > 1029 ? -730 : -930 }}  animate={{ x : xPos }} className="flex gap-3 " aria-label="slider-content-wrapper">
+                    <motion.div 
+                        drag={ drag ? "x" : false }
+                        dragConstraints={{ right:0, left: window.innerWidth > 1029 ? -730 : -930 }}
+                        animate={{ 
+                            x : xPos,
+                            transition : {
+                                duration : 0.5
+                            }}} 
+                        className="flex gap-3 " 
+                        aria-label="slider-content-wrapper">
                         {
                             testimonial.map((testi, i) => (
                                 <div key={i} className="bg-white w-min px-4 py-3" aria-label='slider-content'>
@@ -70,6 +99,6 @@ export const Testimonial  = () => {
                     <img className='opacity-70' src={right} alt="left-arrow"/>
                 </button>
             </div>
-        </section>
+        </motion.section>
     )
 }
